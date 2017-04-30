@@ -1,3 +1,8 @@
+"""
+Perform an experimental analysis of the three algorithms prefix average1,
+prefix average2, and prefix average3, from Section 3.3.3. Visualize their
+running times as a function of the input size with a log-log chart.
+"""
 from prefix import *
 from time import time
 from math import log

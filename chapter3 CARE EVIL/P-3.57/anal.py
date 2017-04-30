@@ -1,6 +1,12 @@
+"""
+Perform experimental analysis to test the hypothesis that Python’s sorted
+method runs in O(nlogn) time on average.
+"""
 from time import time
 from random import shuffle
 from math import log
+
+
 
 # Converges to zero? Then your guess is too high. Repeat with something smaller (e.g. nlogn)
 # Diverges to infinity? Then your guess is too low. Repeat with something bigger (e.g. n^3)
