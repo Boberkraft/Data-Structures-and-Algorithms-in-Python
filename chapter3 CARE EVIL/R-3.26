@@ -1,0 +1,4 @@
+Give a big-Oh characterization, in terms of n, of the running time of the
+example4 function shown in Code Fragment 3.10.
+
+O(n)

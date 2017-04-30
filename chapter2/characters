@@ -1,0 +1,5 @@
+"Return true if there are only whitespace characters in the string and there is at least one character, false otherwise."
+
+Combine that with a special case for handling the empty string.
+
+Alternatively, you could use

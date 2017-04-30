@@ -1,0 +1,9 @@
+Show that if d(n) is O(f(n)) and e(n) is O(g(n)), then d(n)−e(n) is not
+necessarily O(f(n)−g(n)).
+
+let d(n) be 2n^2 + 1 its O(n^2)
+let e(n) be n^2 its O(n^2)
+then d(n) - e(n) = n^2 and its O(n^2)
+not O(n^2 - n^2) = O(1)
+
+

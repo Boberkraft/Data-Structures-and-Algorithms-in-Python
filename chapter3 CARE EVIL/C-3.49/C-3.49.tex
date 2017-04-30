@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{graphicx}
+\graphicspath{ {/} }
+\usepackage{setspace}
+\doublespacing
+\begin{document}
+
+Consider the Fibonacci function, F(n) (see Proposition 3.20). Show by
+induction that $F(n)4$ is $\Omega((3/2)n)$.\\\\
+
+Lets find $c$ and $n_{0}$ such that $F(n) \geq c(\frac{3}{2})^{n}$\\
+for $c = \frac{4}{9}$ and $n_{0} = 1$ everything works great\\
+Inductive Hippotesis:\\
+$F(k) \geq c(\frac{3}{2})^{k}$\\
+\begin{math}
+= F(k+1) + F(k-1)\\
+\geq c(\frac{3}{2})^{k} + c(\frac{3}{2})^{k-1}\\
+= c(\frac{3}{2})^{k-1}\cdot\frac{3}{2} + c(\frac{3}{2})^{k-1}\\
+= c(\frac{3}{2})^{k-1}(\frac{3}{2}+1)\\
+> c(\frac{3}{2})^{k-1}(\frac{3}{2})^{2}, \textnormal{ since } \frac{5}{2} > \frac{9}{4} \\
+= c(\frac{3}{2})^{k+1}
+\end{math}
+
+
+\begin{center}
+	\includegraphics[scale=0.3]{birb}
+	http://www.simonfoucher.com/McGill/COMP250/Lectures/Math/lecture13.pdf
+\end{center}
+
+	
+\end{document}
+
+
+= F(k+1) + F(k-1)\\
+\geq c(\frac{3}{2})^{k} + c(\frac{3}{2})^{k-1}\\
+= c(\frac{3}{2})^{k-1}\cdot\frac{3}{2} + c(\frac{3}{2})^{k-1}\\
+= c(\frac{3}{2})^{k-1}(\frac{3}{2}+1)\\
+> c(\frac{3}{2})^{k-1}(1+1)\\
+= c((\frac{3}{2})^{k-1}+ (\frac{3}{2})^{k-1})\\
+= c((2\cdot (\frac{3}{2})^{k-1})\\
+> c((\frac{3}{2}\cdot (\frac{3}{2})^{k-1})\\
+= c(\frac{3}{2})^{k}\\
+
+oohh god XD

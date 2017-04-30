@@ -1,0 +1,9 @@
+What is the worst-case time complexity of the above algorithm?
+Since the input to the algorithm is just one large number r, assume
+that the input size n is the number of bytes needed to store r, that is,
+n = floor(log2 r)/8)+1, and that each division takes time O(n).
+
+so firstly what i need to do wit bytes? Give me bites!
+n1 = floor(log_2(r)) + 1.
+and we need to divite it n1 times.
+the whole think have complexity (floor(log_2(r)) + 1) * n

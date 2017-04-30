@@ -1,0 +1,9 @@
+ Assuming it is possible to sort n numbers in O(nlogn) time, show that it
+is possible to solve the three-way set disjointness problem in O(nlogn)
+time.
+
+firstly you need to sort a list O(n log n)
+and then for each element of the list O(n) (or every two..)
+check disjointness the nearby elements so 2 basic operations O(1)
+n log n + n < 2 n log n
+so O(n log n)

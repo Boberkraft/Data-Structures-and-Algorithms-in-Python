@@ -1,0 +1,7 @@
+Show that ∑n
+i=1 i/2i < 2. (Hint: Try to bound this sum term by term with
+a geometric progression.)
+
+q = 1/2
+sum = (1-q^n)/(1-1/2)
+lim n -> ∞ = 1/(1-q) = 2

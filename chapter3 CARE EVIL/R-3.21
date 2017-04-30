@@ -1,0 +1,5 @@
+ Show that nlog n is Ω(n).
+
+ n log n > n
+   log n >= 0 for n > 1
+

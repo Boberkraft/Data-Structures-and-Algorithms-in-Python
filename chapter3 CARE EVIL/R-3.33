@@ -1,0 +1,7 @@
+ Al and Bob are arguing about their algorithms. Al claims his O(nlogn)-
+time method is always faster than Bob’s O(n2)-time method. To settle the
+issue, they perform a set of experiments. To Al’s dismay, they find that if
+n < 100, the O(n2)-time algorithm runs faster, and only when n ≥ 100 is
+the O(nlogn)-time one better. Explain how this is possible
+
+Maybe Al is hiding some sort of big shit constant in his algorithm

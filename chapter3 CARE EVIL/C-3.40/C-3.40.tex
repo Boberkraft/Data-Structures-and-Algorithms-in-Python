@@ -1,0 +1,33 @@
+\documentclass{article}
+\begin{document}
+	C-3.40\\
+	Show that $\log_{b}{f(n)}$ is $ \Theta (\log_{2}f(n)) $ if $b > 1$ is a constant.\\
+	\begin{flushleft}
+		\textit{Proof}. This is trivial
+	\end{flushleft}
+	\begin{center}
+		$\log_{2}f(n) = \frac{\log_{b}f(n)}{\log_{b}2}$\\
+	\end{center}
+	
+
+	\begin{flushleft}
+		where $b$ is const\\
+		so \\
+		$\log_{b}2$ is also const\\
+		and we can write whole think	$\log_{2}f(n)$ times a const
+	\end{flushleft}
+	\begin{center}
+		$c = \frac{1}{\log_{b}2}$\\
+		$\log_{2}f(n) = c \cdot \log_{b}f(n)$ 
+	\end{center}
+	\begin{flushleft}
+		and it is $ \Theta (\log_{2}f(n)) $\\
+		so
+	\end{flushleft}
+	 \begin{center}
+	 	$\log_{b}{f(n)}$ is $ \Theta (\log_{2}f(n)) $\\
+	 \end{center}
+	
+
+	
+\end{document}

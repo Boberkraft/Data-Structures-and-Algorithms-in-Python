@@ -1,0 +1,19 @@
+ Describe an efficient algorithm for finding the ten largest elements in a
+sequence of size n. What is the running time of your algorithm?
+
+yo can always sort and then pick 10 first numbers O(n log n)
+
+or implement find_and_destroy()
+find_and_destroy(S) # assume non empy list
+    biggest = 0
+    for i in range(len(s):
+        if S[biggest] < S[i]:
+            biggest = 0
+    b = S[biggest]
+    S[biggest]= 0
+    return b
+it have complexity O(n) and worst O(2n) with is still O(n)
+now aplly this algorith 10 times for sequence n and you are home in
+Complexity O(10n) => O(n)
+
+

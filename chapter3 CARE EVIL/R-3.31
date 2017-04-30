@@ -1,0 +1,12 @@
+ Given an n-element sequence S of integers, Algorithm C executes an
+O(n)-time computation for each even number in S, and an O(logn)-time
+computation for each odd number in S. What are the best-case and worstcase
+running times of Algorithm C?
+
+O(n) * n/2n EVEN
++
+O(log n) * n/2 ODD
+
+if all even its O(n)
+if all odd its O(log n)
+if mixed its between

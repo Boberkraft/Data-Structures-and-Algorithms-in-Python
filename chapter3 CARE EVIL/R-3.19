@@ -1,0 +1,4 @@
+Show that n is O(nlogn).
+
+n < n log n
+for n > 1

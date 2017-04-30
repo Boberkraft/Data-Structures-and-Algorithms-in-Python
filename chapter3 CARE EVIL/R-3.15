@@ -1,0 +1,7 @@
+Show that f(n) is O(g(n)) if and only if g(n) is Ω(f(n)).
+
+f(n) must be asymtothicly slower than g(n), and Ω is a nice symbol that mean this think
+
+f(n) <= c' g(n) its O(g(n))
+so g(n) must be  g(n) >= c' f(n)
+whit is by definition Ω(f(n))

@@ -1,0 +1,4 @@
+Give an example of a positive function f(n) such that f(n) is neither O(n)
+nor Ω(n)
+
+f(n) = sin^2(n) * x^2 + 1 ?

@@ -1,0 +1,20 @@
+A sequence S contains n integers taken from the interval [0,4n], with repetitions
+allowed. Describe an efficient algorithm for determining an integer
+value k that occurs the most often in S. What is the running time of your
+algorithm?
+
+i will use dict that has O(1) look up time
+
+def occur(S):
+        count = {}
+        for element in S: # O(n)
+            count[element] = count[element].get(str(element), 0) + 1  # its O(1)
+
+
+        max = index, val     #O(1)
+        for index, val in count.items():    #O(n)
+            if max[1] > val:    #O(1)
+                max[0] = index
+    return max[0]
+
+O(1) + O(n) + O(n) + O(1) + O(1) + O(1) is O(n)

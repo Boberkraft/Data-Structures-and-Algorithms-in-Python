@@ -1,0 +1,3 @@
+Show that n2 is Ω(nlogn).
+
+n^2 >= n log n for n > 0

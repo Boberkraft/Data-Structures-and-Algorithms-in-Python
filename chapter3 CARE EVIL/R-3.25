@@ -1,0 +1,12 @@
+ Give a big-Oh characterization, in terms of n, of the running time of the
+example3 function shown in Code Fragment 3.10.
+
+1, 2, 3, 4, n -1, n
+    1
+    1, 2
+    1, 2, 3
+    1, 2, 3, 4
+
+outer loop n
+inner loop n^2/2 * (n-1)/2 => O(n)
+whole think O(n*n)

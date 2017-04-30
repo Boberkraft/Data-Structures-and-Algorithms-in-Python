@@ -1,0 +1,3 @@
+Show that 2^(n+1) is O(2n).
+
+2^(n+1) = 2^n * 2 and 2 is just a constant

@@ -1,0 +1,14 @@
+Show that O(max{ f(n), g(n) }) = O(f(n) + g(n)).
+
+f(n) + g(n) >= max(f(n), g(n))
+
+f(n) + g(n) <= c' * max(f(n), g(n))
+f(n) + g(n) is ( max(f(n), g(n)) )
+
+deeper proov
+
+if f(n) and g(n) are both equal (minimal magnitute)
+2 f(n) <= 2 max(f(n), g(n))
+
+and it hold true if one of the functions is bigger
+g(n) + f(n) <=  2 max(f(n), g(n))

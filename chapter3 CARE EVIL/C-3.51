@@ -1,0 +1,10 @@
+Show that the summation ∑n
+i=1 logi is O(nlogn).
+
+consider
+
+log(1) + log(2) + log(3) + log(4) + log(n) <= c * log(n)
+
+log(1) + log(2) + log(3) + log(4) + log(n) < log(n) + log(n) + log(n) + log(n) + log(n)
+= n* log(n)
+n * log(n) <= n * log(n) and that is O(n log n)

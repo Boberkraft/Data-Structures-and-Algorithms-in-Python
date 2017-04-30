@@ -1,0 +1,3 @@
+Show that (n+1)5 is O(n5).
+
+(n+1)5 <= 2 n^5 for n > 1

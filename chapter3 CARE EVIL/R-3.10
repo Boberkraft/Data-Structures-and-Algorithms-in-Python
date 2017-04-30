@@ -1,0 +1,9 @@
+Show that if d(n) is O(f(n)) and e(n) is O(g(n)), then the product d(n)e(n)
+is O(f(n)g(n)).
+
+so d(n) < c' * f(n)
+and e(n) < c'' * g(n)
+
+so d(n) * e(n) < c' * c'' * f(n) * g(n)
+and because c' and c'' are constants
+so d(n) * e(n) < O(f(n) * g(n))

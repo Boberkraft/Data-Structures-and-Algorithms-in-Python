@@ -1,0 +1,16 @@
+Al says he can prove that all sheep in a flock are the same color:
+Base case: One sheep. It is clearly the same color as itself.
+Induction step: A flock of n sheep. Take a sheep, a, out. The remaining
+n − 1 are all the same color by induction. Now put sheep a back in and
+take out a different sheep, b. By induction, the n− 1 sheep (now with a)
+are all the same color. Therefore, all the sheep
+
+????
+Showing that sheep a color doasnt mean every sheep have that color too.
+They have nothing in common. They are independed ;p
+Consider:
+Red Pink
+if a = red, b = pink, it already fails
+even for bigger number of sheep
+
+its only true for n = 1
