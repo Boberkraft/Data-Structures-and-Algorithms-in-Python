@@ -7,6 +7,6 @@ Some filenames have **UNSOLVED** or **HALFSOLVED** and they are... *i will surpr
 
 I would be very grateful if you can help me with them :)
 Email:
-> andrzej.bisewski@gmail.com
+> andrzej dot bisewski at gmail.com
 
 ![bird](birb.jpg)
