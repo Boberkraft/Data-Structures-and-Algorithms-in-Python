@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{graphicx}
+\graphicspath{{/}}
+\begin{document}
+
+In Section 4.2 we prove by induction that the number of lines printed by a call to $interval(c)$ is $2^{c} - 1$. Another interesting question is how many dashes are printed during that process. Prove by induction that the number of dashes printed by $interval(c)$ is $2^{c+1} -c-2$.\\\\
+
+Base case:\\
+$interval(n) = 2^{n+1}-n-2 $\\
+$interval(1) = 2^{2}-1-2 = 1$\\
+$interval(2) = 2^{3}-2-2 = 4$\\\\
+
+Hyppotesis:
+
+
+$interval(n+1) = 2\cdot interval(n)+n+1$\\\\
+$= 2\cdot(2^{n+1}-n-2) + n + 1$\\
+$= 2\cdot 2^{n+1}- 2n-4 +n+1$\\
+$= 2^{(n+1)+1}-n-4 +1$\\
+$= 2^{(n+1)+1}-(n+1)-4 $\\
+why it is 4 not 2 :c help pls
+
+\begin{center}
+	\includegraphics[scale=0.5]{birb}
+\end{center}
+\end{document}
