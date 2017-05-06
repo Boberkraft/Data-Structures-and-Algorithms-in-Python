@@ -1,5 +1,5 @@
 ### My answers to Data Structures and Algorithms in Python
-Hello. There are mine solutions to problems given in that book. I really like ms paint
+Hello. These are mine solutions to problems given in that book. I really like ms paint
 
 Feel free to do pr.
 
