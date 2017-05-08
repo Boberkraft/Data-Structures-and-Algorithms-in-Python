@@ -22,11 +22,13 @@ for $c = \frac{4}{9}$ and $n_{0} = 1$ everything works great\\
 	$
 \end{center}
 Inductive Hippotesis:\\
-$F(k) \geq c(\frac{3}{2})^{k}$\\
+$F(k) \geq c(\frac{3}{2})^{k}$, for some $k \geq n_0$\\
+Lets schow that $F(k+1) \geq c(\frac{3}{2})^{k+1}$\\
 
+$F(k+1) = F(k) + F(k-1)$\\
+Lets apply out Hippotesis\\
 \begin{math}
-F(k+1) = F(k) + F(k-1)\\
-\geq c(\frac{3}{2})^{k} + c(\frac{3}{2})^{k-1}\\
+F(k+1) \geq c(\frac{3}{2})^{k} + c(\frac{3}{2})^{k-1}\\
 = c(\frac{3}{2})^{k-1}\cdot\frac{3}{2} + c(\frac{3}{2})^{k-1}\\
 = c(\frac{3}{2})^{k-1}(\frac{3}{2}+1)\\
 > c(\frac{3}{2})^{k-1}(\frac{3}{2})^{2}, \textnormal{ since } \frac{5}{2} > \frac{9}{4} \\
