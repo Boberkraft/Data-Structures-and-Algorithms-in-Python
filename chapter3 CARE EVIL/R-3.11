@@ -6,5 +6,9 @@ and e(n) < c'' * g(n)
 
 so d(n) + e(n) < c' * f(n) +  c'' * g(n)
 and because c' and c'' are constants
-so there exist a single constant
-such thant d(n) + e(n) < c'''(f(n) + g(n))
+we can replace that with a singe constant c''' = max(c', c'')
+for n''' = max(n', n'')
+
+
+such that d(n) + e(n) < c'''(f(n) + g(n))
+for n >= n'''
