@@ -1,0 +1,12 @@
+9 Explain the changes that would have to be made to the program of Code
+Fragment 5.11 so that it could perform the Caesar cipher for messages
+that are written in an alphabet-based language other than English, such as
+Greek, Russian, or Hebrew.
+
+You need to gather all possible letters, order them and then put them in array.
+next create new encoded list that is shifted.
+
+Dont forget to change line:
+j = ord(msg[k]) - ord('A')
+to
+j = original.find(msg[k])

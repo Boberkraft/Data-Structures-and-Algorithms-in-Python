@@ -1,9 +1,6 @@
 from copy import copy
 
 
-
-
-
 def puzzle_solver(a, b, aplusb, max_letters = None):
     """Max letter is range of numbers you want to use
     eq. to solve some + more = money you need range of 10

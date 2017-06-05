@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+Consider the following “justification” that the Fibonacci function, $F(n)$ (see Proposition 3.20) is $O(n)$: \\
+Base case ($n \geq 2$):\\
+$F(1) = 1$ and $F(2) = 2$.\\
+Induction step $(n > 2)$:\\
+Assume claim true for $n' < n$. Consider $n$. \\$ F(n) = F(n-2) +F(n-1)$. \\By induction, $F(n-2)$ is $O(n-2)$ and $F(n-1)$ is $O(n-1)$.\\ Then, $F(n)$ is $O((n-2)+(n-1))$, by the identity presented in Exercise R-3.11. Therefore, $F(n)$ is $O(n)$.\\
+What is wrong with this “justification”?\\\\\\
+ 
+I will show by example that Fibonacci function, $F(n)$ is not $O(n)$.\\
+For now lets try to proof that $F(n)$ is $O(n)$ and that means:
+\begin{center}
+	 $F(n) \geq c \cdot n$, for $c = \{c \in \mathbb{R} \mid c > 0 \}$, $ n \geq 1 $.\\
+\end{center} 
+Firstly we need to find a constant that matches to our function.\\
+$F(1) = 1$\\
+$F(2) = 1$\\
+$F(3) = 2$\\
+$F(4) = 3$\\
+Let $c$ be 120.\\
+Base cases:
+\begin{center}
+	$
+	\begin{array}{cccc}
+	n	& F(n) & & 120n \\ 
+	\hline
+	1& 1 &<& 120 \\ 
+	2& 1 &<& 230 \\ 
+	3& 2 &<& 360 \\ 
+	\end{array} 
+	$
+\end{center}
+Inductive hipotessis:\\
+$F(k) \geq ck$ for some $k \geq n_0$, \\and we want to show $F(k) \geq ck$ for every k\\
+
+\begin{align*}
+		F(k) &= F(k-1) + F(k-2)\\
+			&\leq c(k-1) + c(k-2), \text{ by inductive hipotessis}\\
+			&=c(k+k-1 - 2) \\
+			&=c(2k - 3) \\
+			&=2ck - 3c \\
+			&< 2ck \text{, since }0 > -3c \\
+			&\nleq ck
+\end{align*}
+This shows that $F(n)$ can not be $O(n)$ because i have proved \\ that by example? $ \blacksquare $
+\end{document}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\graphicspath{{/}}
