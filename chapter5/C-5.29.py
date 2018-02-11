@@ -26,7 +26,7 @@ def method2(data1, data2):
     new = []
     for index, el in enumerate(data1):
         hash[el[1]] = index
-
+    print(hash)
     for el in data2:
         if el[0] in hash:
             new.append((el[0], data1[hash[el[0]]][0], el[1]))
@@ -36,8 +36,8 @@ data_a = [('a', num) for num in range(10)]
 data_b = [(num, 'b') for num in range(10)]
 shuffle(data_a)
 shuffle(data_b)
-print(data_a)
-print(data_b)
-print(method1(copy(data_a), copy(data_b)))
+# print(data_a)
+# print(data_b)
+# print(method1(copy(data_a), copy(data_b)))
 print(method2(copy(data_a), copy(data_b)))
 

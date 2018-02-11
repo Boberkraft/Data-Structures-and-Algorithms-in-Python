@@ -28,7 +28,7 @@ def my_walk(path):
 
 if __name__ == '__main__':
     path = os.path.dirname(os.path.abspath(__file__))
-    path = os.path.join(path, 'test')
+    path = os.path.join(path, 'test.qml')
     for f in os.walk(path):
         print(f)
         print()
