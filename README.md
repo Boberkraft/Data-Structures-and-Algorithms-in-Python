@@ -3,10 +3,10 @@ Hello. These are mine solutions to problems given in that book. I really like ms
 
 Feel free to do pr.
 
-Some filenames have **UNSOLVED** or **HALFSOLVED** and they are... *i will surprise you*... unsolved completely.
+Some filenames are postfixed with **UNSOLVED** or **HALFSOLVED** and they are... *i will surprise you*... not completely solved.
 
-I would be very grateful if you can help me with them :)
+I would be very grateful if you could help me with them :)
 Email:
-> andrzej dot bisewski at gmail.com
+> andrzej.bisewski at gmail.com
 
 ![bird](birb.jpg)
