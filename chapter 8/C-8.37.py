@@ -8,5 +8,10 @@ one?
    . .
   x x x x
  
+two?
+  .
+ x .
+  x .
+   x x
 
 """
