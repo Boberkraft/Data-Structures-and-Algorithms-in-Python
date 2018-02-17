@@ -38,3 +38,14 @@ def disk_space(T, p):
     for c in T.children(p):
         subtotal += disk_space(T, c)
         return subtotal
+
+def intented_parenthetic(tree, p, ind=0):
+    print('  '*ind + str(p.element()), end='')
+    if not tree.is_leaf(p):
+        print('(')
+    else:
+        print()
+    for child in tree.children(p):
+        intented_parenthetic(tree, child, ind + 1)
+    if not tree.is_leaf(p):
+        print(' ' * ind + ')')
