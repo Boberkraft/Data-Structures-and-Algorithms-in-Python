@@ -41,6 +41,10 @@ class LinkedBinaryTree(BinaryTree):
     def __len__(self):
         return self._size
 
+    def is_root(self, p):
+        p = self._validate(p)
+        return p == self._root
+
     def root(self):
         return self._make_position(self._root)
 
@@ -55,7 +59,6 @@ class LinkedBinaryTree(BinaryTree):
     def right(self, p):
         node = self._validate(p)
         return self._make_position(node._right)
-
 
     def _add_root(self, e):
         if self._root is not None:
@@ -122,4 +125,3 @@ class LinkedBinaryTree(BinaryTree):
             node._right = t2._root
             t2._root = None
             t2._size = 0
-
