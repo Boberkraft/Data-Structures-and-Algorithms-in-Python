@@ -111,5 +111,6 @@ def tokenize(raw):
     tokens.append(raw[mark:n])      # complete preceding token
   return tokens
 
-# x = build_expression_tree('(((3+1)*4)/((9-5)+2))')
+x = build_expression_tree('(((3+1)*4)/((9-5)+2))')
+print(type(x._root._left))
 # print(x, '=', x.evaluate())
