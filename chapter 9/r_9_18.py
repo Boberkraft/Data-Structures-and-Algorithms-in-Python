@@ -26,8 +26,7 @@ log (n!) > log ( n/2 ^ n/2)
          = 1/2 * n log( 1/2 * n)
          = 1/2 * n log(1/2) * log(n)
          = 1/2 log(1/2) * n * log(n)
-         c = 1/2 log(1/2) 
-         = c * n * log(n)
-         and it is Ω(n log n)  
+         = c * n * log(n), c = 1/2 log(1/2) 
+         so it is Ω(n log n)  
 
 """
