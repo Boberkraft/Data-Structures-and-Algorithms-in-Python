@@ -45,3 +45,17 @@ class AdaptableHeapPriorityQueue(HeapPriorityQueue):
             self._data.pop()
             self._buble()
         return (loc._key, loc._value)
+
+AdaptableMinHeapPriorityQueue = AdaptableHeapPriorityQueue
+
+class AdaptableMaxHeapPriorityQueue(AdaptableHeapPriorityQueue):
+    def add(self, key, value):
+        super().add(-key, value)
+
+    def max(self):
+        k, v = super().min()
+        return -k, v
+
+    def remove_max(self):
+        k, v = super().remove_min()
+        return -k, v

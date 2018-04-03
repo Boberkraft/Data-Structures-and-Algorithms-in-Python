@@ -39,7 +39,7 @@ class HeapPriorityQueue(PriorityQueueBase):
                 self._downheap(small_child)
 
     def __init__(self, contents=()):
-        self._data = [self._Iitem(k, v) for k, v in contents]
+        self._data = [self._Item(k, v) for k, v in contents]
         if len(self._data) > 1:
             self._heapify()
 
@@ -47,7 +47,7 @@ class HeapPriorityQueue(PriorityQueueBase):
         start = self._parent(len(self) - 1)
         for j in range(start, -1, -1):
             self._downheap(j)
-    
+
     def __len__(self):
         return len(self._data)
 
@@ -68,3 +68,23 @@ class HeapPriorityQueue(PriorityQueueBase):
         item = self._data.pop()
         self._downheap(0)
         return item._key, item._value
+
+    def __iter__(self):
+        for m in self._data:
+            yield m._key, m._value
+
+
+MinHeapPriorityQueue = HeapPriorityQueue
+
+
+class MaxHeapPriorityQueue(HeapPriorityQueue):
+    def add(self, key, value):
+        super().add(-key, value)
+
+    def max(self):
+        k, v = super().min()
+        return -k, v
+
+    def remove_max(self):
+        k, v = super().remove_min()
+        return -k, v
