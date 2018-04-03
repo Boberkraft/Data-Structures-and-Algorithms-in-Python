@@ -14,7 +14,7 @@ def preorder_label(T, p, d, path):
     path.pop()
 
 
-def parenthesize(T, p):
+def _parenthesize(T, p):
     print(p.element(), end='')
     if not T.is_leaf(p):
         first_time = True
@@ -22,8 +22,12 @@ def parenthesize(T, p):
             sep = ' ( ' if first_time else ', '
             print(sep, end='')
             first_time = False
-            parenthesize(T, c)
+            _parenthesize(T, c)
         print(')', end='')
+
+def parenthesize(t, p):
+    _parenthesize(t, p)
+    print()
 
 
 def disk_space(T, p):
