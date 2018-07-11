@@ -1,0 +1,1354 @@
+
+<!-- saved from url=(0080)http://www.mathcs.emory.edu/~cheung/Courses/323/Syllabus/Map/skip-list-perf.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><meta http-equiv="expires" content="0">
+
+
+
+<style type="text/css">
+table {font-size: 100%;}
+</style>
+</head>
+
+<body text="#000000" link="#00ff00" vlink="#f00000" bgcolor="#ffffff">
+
+<h3>
+<hr>
+A <i>probabilistic</i> (run time) analysis of Skip Lists
+<hr>
+</h3>
+<p>
+</p><ul>
+
+<li> <font color="darkmagenta"><b>
+     Problem description
+     </b></font>
+<p>
+</p><ul>
+<li> <b>Question:</b>
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> What is the <font color="red"><b>running time</b></font> of
+      the <font color="blue"><b>get(k)</b></font>
+      operation on a
+      <b>Skip List</b> ???
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+</p></li><li> <b>In other words:</b>
+<p>
+</p><ul>
+<table bgcolor="#CCFFCC" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> How many <font color="blue"><b>entries</b></font>
+    in the <font color="darkmagenta"><b>skip list</b></font>
+      will the <font color="red"><b>get(k)</b></font>
+      operation <font color="blue"><b>examine</b></font> ?
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+</p></li><li> <b>Related problems:</b>
+<p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> The <font color="blue"><b>running time</b></font> for the
+    <font color="red"><b>get(k)</b></font> method will
+    <b>also</b>
+    determine the
+    <font color="blue"><b>running times</b></font>
+    for 
+    <font color="darkmagenta"><b>put(k,v)</b></font> and
+    <font color="darkmagenta"><b>remove(k)</b></font>
+ <p>
+ </p></li><li> <b>Because:</b>
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li>     the <font color="blue"><b>put(k,v)</b></font> and
+      the <font color="blue"><b>remove(k)</b></font>
+      operation needs to <font color="red"><b>find</b></font> the
+      <font color="darkmagenta"><b>entry</b></font> first
+      before they can perform the
+      <font color="red"><b>corrresponding operation</b></font>
+ <p>
+ (Once you have <font color="red"><b>located the entry</b></font>,
+  the <font color="blue"><b>put(k,v)</b></font> and
+      the <font color="blue"><b>remove(k)</b></font>
+      will take <font color="red"><b>O(1)</b></font> number of operations
+      to <font color="blue"><b>complete</b></font>....)
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+</p></li></ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+
+</p><p>
+</p></li><li> <font color="darkmagenta"><b>
+     Preliminary result of the <i>run time</i> of the
+     <i>search</i> operation in skip lists
+     </b></font>
+<p>
+ </p><ul>
+ <li> Consider the <font color="red"><b>search operation</b></font>
+    in a <b>skip list</b>:
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list11.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+</p></li><li> <b>Main loop in the <font color="red">search</font> algorithm:</b>
+<p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>
+  public HashEntry findEntry(String k)
+  {
+     HashEntry p;
+
+     /* -----------------
+        Start at "head"
+        ----------------- */
+     p = head;
+<font color="red">
+     /* =========================================
+        Main search loop
+	========================================= */</font>
+     while ( true )
+     {<font color="darkred">
+        /* --------------------------------------------
+           Search RIGHT until you find a LARGER entry
+           -------------------------------------------- */</font>
+        <font color="darkmagenta">while</font> ( <font color="magenta">(p.right.key) != HashEntry.posInf &amp;&amp;
+                (p.right.key).compareTo(k) &lt;= 0</font> )
+        {<font color="red">
+           p = p.right;</font>
+        }
+<font color="darkred">
+        /* ---------------------------------
+           Go down one level if you can...
+           --------------------------------- */</font>
+        <font color="darkmagenta">if</font> ( <font color="magenta">p.down != null</font> )
+        {<font color="red">
+           p = p.down;</font>
+        }
+        else
+           break;       // We reached the LOWEST level... Exit...        
+     }
+
+     return(p);         // Nearest p (&lt;= k)
+  }
+
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+</p></li><li> <b>Scanning motion through a skip list:</b>
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list50.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <b>Number of entries visited:</b>
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list51.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+<b>Prelimary result of the <i>run time</i> of the <i>get(k)</i> operation:</b>
+</p><p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>    # entries visited =   # entries visited in level h-1
+                        + # entries visited in level h-2
+			+ ....
+			+ # entries visited in level 0
+
+<hr>
+
+    # entries visited =   1 + <font color="darkred"># right traversals on level h-1  </font>
+                        + 1 + <font color="darkred"># right traversals on level h-2  </font>
+			+ ....
+			+ 1 + <font color="darkred"># right traversals on level 0  </font>
+
+<hr>
+    # entries visited =   <font color="red">h</font>
+			+ <font color="darkred"># right traversals on level h-1  </font>
+			+ <font color="darkred"># right traversals on level h-2  </font>
+			+ ...
+			+ <font color="darkred"># right traversals on level 0  </font>  
+
+<hr><font color="red">
+    run time get(k) ~= h + h × <font color="darkred">( avg # right traversals on one level )</font>   </font> 
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+So the <font color="red"><b><i>average</i> running time</b></font>
+of the <font color="blue"><b>get(k)</b></font> operation is
+ <b><i>apprimately</i></b> equal to:
+</p><p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+</b></font><b><pre><font color="blue">    Avg run time get(k) ~= Avg(h) + Avg(h) × <font color="darkred">( avg # right traversals on one level )</font> ....... (1)</font>   
+</pre>
+</b>
+
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+</p><p>
+</p><hr>
+<p>
+</p></li><li> There are <font color="red"><b>2 unknowns</b></font> that
+     we need to <font color="blue"><b>figure out</b></font>:
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> The <font color="red"><b><i>average</i> height (Avg(h))</b></font> of
+      a <font color="blue"><b>Skip List</b></font>
+ <p>
+ </p></li><li> The <font color="red"><b><i>average</i> # of right traversals</b></font>
+     on <font color="blue"><b><i>one</i> level</b></font>
+     made by a <b>search operation</b>.
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+ </p></li></ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <font color="darkmagenta"><b>
+     Preliminary to computing <i>Avg(h)</i>
+     </b></font>
+<p>
+</p><ul>
+<li> <b>Recall</b> how we compute
+    an <font color="blue"><b>average cost</b></font>
+    using <font color="red"><b>frequencies</b></font>:
+<p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>     Case    Frequency    Cost
+   -------+-------------+--------              
+       1        f<sub>1</sub>         C<sub>1</sub>
+       2        f<sub>2</sub>         C<sub>2</sub>
+       ....
+       n        f<sub>n</sub>         C<sub>n</sub>
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+The <font color="blue"><b>average cost</b></font> is equal to:
+</p><p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>    Avg Cost = f<sub>1</sub>×C<sub>1</sub> + f<sub>2</sub>×C<sub>2</sub> + .... + f<sub>n</sub>×C<sub>n</sub>       
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+</p></li><li> <b>Recall <i>also</i></b> that:
+<p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li>  The <font color="red"><b>(relative) frequency</b></font>
+     is approximately equal to
+     the <font color="blue"><b><i>probability</i></b></font>.
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+
+    
+</p></li></ul>
+
+
+<p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <font color="darkmagenta"><b>
+     Probability that a skip list has <i>height h</i>
+     </b></font>
+<p>
+</p><ul>
+<li> <b>Fact:</b>
+<p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> The <font color="blue"><b>height </b></font> of
+     a <font color="red"><b>skip list</b></font>
+     is <font color="darkmagenta"><b>random</b></font>
+ <p>
+ </p></li><li> We can only talk about the
+     <font color="red"><b><i>average</i> height</b></font>
+        of a <b>skip list</b>
+ <p>
+</p><hr>
+<p>
+</p></li><li> Or:
+<p>
+</p><ul>
+<table bgcolor="#CCFFCC" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li>
+
+ <font color="blue"><b>how likely (probability)</b></font>
+    that a skip list has 
+    <font color="red"><b>height h</b></font>....
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+</p></li><li> <b>Height of a skip list - part 1:</b>
+<p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> The <font color="blue"><b>height</b></font> of a <b>skip list</b> is
+      the <font color="red"><b>height of the <i>highest</i> tower</b></font>:
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list22.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+</p></li><li> <b>What determines the <i>height</i> of a tower:</b>
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> The <font color="blue"><b>height</b></font> of
+      a <font color="darkmagenta"><b>tower</b></font> is
+      <b>determined</b> by the
+      <font color="darkmagenta"><b>number of
+      <i>consecutive</i> successful tosses</b></font>
+      (using a <font color="red"><b>fair (50% success) coin</b></font>)
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <b>Height of <i>one</i> tower:</b>
+<p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5" width="800">
+<tbody><tr> <td>
+
+ <ul>
+<li> <b>Probability that the height of a tower = i:</b>
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list52.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+<b>Note:</b>
+</p><p>
+</p><ul>
+<table bgcolor="#CCFFCC" border="5">
+<tbody><tr> <td>
+
+<font color="red">
+<b>
+<pre>                      1
+   &#1166;[ height = i ] = ---               
+                      2<sup>i</sup>
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+</p></li><li> <b>Height of a skip list - part 2:</b>
+<p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> <b>Height of a skip list:</b>
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list53.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+<b>Notes:</b>
+</p><p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+<font color="red">
+<b>
+<pre>
+   Skip list has height h =     (height of tower 1 = h)            
+                             OR (height of tower 2 = h)
+			     OR (height of tower 3 = h)
+			     ...
+			     OR (height of tower n = h)		     
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <b>Probability that a skip list has
+   <font color="red"><i>height h</i></font>:</b>
+<p>
+</p><ul>
+<table bgcolor="#CCFFCC" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>
+   &#1166;[ <font color="red">Skip list has height h</font> ] = &#1166;[    <font color="red">(height of tower 1 = h)</font> 
+                                    OR <font color="red">(height of tower 2 = h)</font>
+                                    OR <font color="red">(height of tower 3 = h)</font>
+				    ...
+                                    OR <font color="red">(height of tower n = h)</font> ]       
+
+                              ~=    &#1166;[ <font color="red">(height of tower 1 = h)</font> ]
+                                  + &#1166;[ <font color="red">(height of tower 2 = h)</font> ]
+                                  + &#1166;[ <font color="red">(height of tower 3 = h)</font> ]
+				    ...
+                                  + &#1166;[ <font color="red">(height of tower n = h)</font> ]
+
+                                  1     1            1
+                               = --- + --- + .... + ---
+			          2<sup>h</sup>    2<sup>h</sup>           2<sup>h</sup>
+<font color="red">
+                                  n
+			       = ---
+			          2<sup>h</sup></font>
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+</p></li></ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <font color="darkmagenta"><b>
+     The <i>average</i> height of a skip list of n entries</b></font>
+     
+<p>
+</p><ul>
+<li> Computing the <font color="red"><b>average height</b></font>
+     of a <b>skip list</b>
+      using
+     the <font color="blue"><b>"frequency weighting method"</b></font>
+     (f1*c1 + f2*c2 + ...) is 
+     <font color="red"><b>very difficult</b></font>
+ <p>
+   Goodrich resorts to
+   an <font color="red"><b><i>approximation</i></b></font>....
+</p><p>
+   by looking for:
+</p><p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> What is the <font color="red"><b>height</b></font> with
+    the  <font color="blue"><b><i>greatest</i> probability</b></font>....
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+</p><p>
+</p><hr>
+<p>
+</p></li><li> The <b>likelihood (chance)</b> of having a skip list
+       of 
+    <font color="blue"><b>height</b></font>
+   equal to <font color="red">3log(n)</font> is
+  <font color="blue"><b><i>approximately</i></b></font>:
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>                                       n
+  &#1166;[ <font color="darkred">Skip list has height <font color="red">3log(n)</font></font> ] = ---
+                                       2<sup>3log(n)</sup>            
+
+				       n
+                                    = ---
+				       2<sup>log(n<sup>3</sup>)</sup>
+
+				       n
+                                    = ---
+				       n<sup>3</sup>
+
+				       1
+                                    = ---
+				       n<sup>2</sup>
+
+<hr>
+ Example: <font color="red">n = 1000</font>
+
+                                                                1
+     &#1166;[ <font color="darkred">Skip list of 1000 elements has height <font color="red">3log(1000)</font></font> ] = ------- = <font color="red">0.000001</font>        
+                                                              1000<sup>2</sup>
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+</p></li><li> The <b>likelihood (chance)</b> of having a skip list
+       of 
+    <font color="blue"><b>height</b></font>
+   equal to <font color="red">2*log(n)</font> is
+ <font color="blue"><b><i>approximately</i></b></font>:
+
+<p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>                                       n
+  &#1166;[ <font color="darkred">Skip list has height <font color="red">2log(n)</font></font> ] = ---
+                                       2<sup>2log(n)</sup>            
+
+				       n
+                                    = ---
+				       2<sup>log(n<sup>2</sup>)</sup>
+
+				       n
+                                    = ---
+				       n<sup>2</sup>
+
+				       1
+                                    = ---
+				       n
+
+<hr>
+ Example: <font color="red">n = 1000</font>
+
+                                                                1
+     &#1166;[ <font color="darkred">Skip list of 1000 elements has height <font color="red">2log(1000)</font></font> ] = ------- = <font color="red">0.001</font>        
+                                                              1000
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><p>
+</p><hr>
+<p>
+</p></li><li> The <b>likelihood (chance)</b> of having a skip list
+       of 
+    <font color="blue"><b>height</b></font>
+   equal to <font color="red">log(n)</font> is
+   <font color="blue"><b><i>approximately</i></b></font>:
+
+<p>
+</p><ul>
+<table bgcolor="#CCFFCC" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>                                      n
+  &#1166;[ <font color="darkred">Skip list has height <font color="red">log(n)</font></font> ] = ---
+                                      2<sup>log(n)</sup>            
+
+				      n
+                                   = ---
+				      n
+
+                                   = <font color="red">1</font>
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p> That's <font color="red"><b><i>huge</i></b></font> for
+    a <font color="blue"><b>probability</b></font>
+   (it's approximately "certain") !!!
+</p><p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> Without going into <font color="red"><b>mathematical details</b></font>,
+   the <b>above computations</b> argues that:
+<p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> The <font color="red"><b>average height</b></font>
+    (or <font color="blue"><b>expected height</b></font>) of
+    a <b>skip list</b>
+    with 
+    <font color="darkmagenta"><b>n entries</b></font>
+    is:
+<p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>   <font color="red"><b>Avg(h) of a Skip list with n entries = log(n)</b></font>                 
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+<font color="blue"><b>One down</b></font>,
+ <font color="red"><b>one more</b></font> to go !!!.
+</p><p>
+</p></li></ul>
+<p>
+
+</p><p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <font color="darkmagenta"><b>
+     Average number of <i>right-directional</i> traversals
+     in one layer
+     </b></font>
+<p>
+</p><ul>
+<li> <b>Important fact:</b>
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> <font color="blue"><b>All the keys</b></font>
+       <font color="darkmagenta"><b>after</b></font> the 
+       <font color="red"><b>first key</b></font>
+       scanned in <font color="blue"><b>layer i</b></font>
+       belong
+       to <b>towers</b>
+       of <font color="red"><b>height i</b></font>
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+<b>Example:</b>
+</p><p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list54.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+<b>Note:</b>
+</p><p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> After scanning <font color="blue"><b>key 31</b></font>,
+ the <font color="red"><b>other keys scanned (38, 44)</b></font>
+ belong to a <b>tower</b> of <font color="red"><b>height 2</b></font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <b>Situation in  layer i:</b>
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list55.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+<b>Conclussion:</b>
+</p><p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> The <font color="blue"><b>number of <i>right-directional</i>
+   traversals in layer <i>i</i></b></font>
+   <font color="red"><b>&#8804; number of consecutive
+  towers of height <i>i</i></b></font> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <b>$64,000 question:</b>
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list56.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+<font color="red"><b>How likely</b></font> is
+ the <font color="blue"><b>next tower</b></font> that you visit
+ has <font color="darkmagenta"><b>height = i</b></font>
+</p><p>
+</p><hr>
+<p>
+</p></li><li> It is <b>important</b> to note that
+   there are <font color="red"><b>only 2 kinds</b></font> of
+   "towers" in <font color="blue"><b>layer i</b></font>:
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> <b>Columns</b> that have <font color="blue"><b>height = i</b></font>
+ <p>
+ </p></li><li> <b>Columns</b> that have <font color="red"><b>height &gt; i</b></font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+So <font color="blue"><b><i>only</i> towers</b></font> of
+  <font color="red"><b>height &#8805; i</b></font> are
+  in <b>layer i</b>.
+</p><p>
+</p><hr>
+<p>
+</p></li><li> <b>Note:</b>
+<p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li>  For those that are
+    <b><i>familiar</i></b> with
+   in <font color="blue"><b>probability theory</b></font>,
+   we are using the <font color="red"><b>conditional probability</b></font>:
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li>   we are <b>given</b> the fact that
+   <font color="darkred"><b>height &#8805; i</b></font>
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+(I am trying to explain this stuff 
+  <font color="red"><b><i>without</i></b></font> requiring the knowledge of
+  <font color="blue"><b>conditional probability</b></font>)
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <b>Question:</b>
+<p>
+</p><ul>
+<table bgcolor="#CCFFCC" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> <b>When</b> a tower
+    <font color="blue"><b>has <i>reached</i></b></font> the
+    height of <b>i</b>,
+    what makes it <font color="red"><b>stop growing</b></font> ?
+<p>
+  <b>Answer:</b> the <b>code</b> that
+   <font color="blue"><b>determine</b></font> when to
+   <font color="red"><b>stop</b></font> adding a layer is:
+</p><p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>   while ( <font color="red">r.nextRandom() &lt; 0.5</font> )
+   {
+       // code to add 1 layer              
+   }
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+So <font color="red"><b><tt>r.nextRandom()</tt></b></font> returned
+ a value that is <font color="blue"><b> &#8805; 0.5</b></font>
+</p><p>
+</p><hr>
+<p>
+ </p></li><li> <b>When</b> a tower
+    <font color="blue"><b>has <i>reached</i></b></font> the
+    height of <b>i</b>,
+    what makes the tower
+     <font color="red"><b>grow <i>higher</i> than i</b></font> ?
+<p>
+  <b>Answer:</b> the <b>code</b> that
+   <font color="blue"><b>determine</b></font> when to
+   <font color="red"><b>stop</b></font> adding a layer is:
+</p><p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>   while ( <font color="red">r.nextRandom() &lt; 0.5</font> )
+   {
+       // code to add 1 layer              
+   }
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+So <font color="red"><b><tt>r.nextRandom()</tt></b></font> returned
+ a value that is <font color="blue"><b> &lt; 0.5</b></font>
+
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <b>Another question:</b>
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> What is then the <font color="blue"><b>probability</b></font>
+    that the <font color="red"><b>next column</b></font> that you visit 
+    <font color="blue"><b><i>inside</i> layer i</b></font>
+    has <font color="red"><b>height i</b></font> ???
+<p>
+<b>Answer:</b>
+</p><p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list57.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+You have a <font color="red"><b>50%</b></font> change to
+ find a tower of
+ <font color="blue"><b>height i</b></font> as your
+ <font color="red"><b>next column</b></font>
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<hr>
+<p>
+<b>Therefore</b>, the
+   <font color="red"><b>average number <i>consecutive</i> towers
+    of height i</b></font> 
+    in <font color="blue"><b>layer i</b></font>
+   can be computed as follows:
+</p><p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> <b>Case 1:</b>
+       <font color="blue"><b>0 towers</b></font> of <b>height i</b>
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list58a.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+ </p></li><li> <b>Case 2:</b>
+         <font color="blue"><b>1 tower</b></font> of <b>height i</b>
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list58b.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+</p><hr>
+<p>
+ </p></li><li> <b>Case 3:</b>
+       <font color="blue"><b>2 towers</b></font> of <b>height i</b>
+<p>
+</p><ul>
+<table border="5">
+
+<tbody><tr> <td>
+<img src="./skip-list-perf_files/skip-list58c.gif">
+</td> </tr>
+
+</tbody></table>
+</ul>
+<p>
+<font color="red"><b>And so on !!!!</b></font>
+ </p></li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+
+</p><hr>
+<hr>
+<p>
+</p></li><li> The <font color="blue"><b>average number</b></font>
+    of <font color="darkmagenta"><b>right (directional) moves</b></font>
+    to <b>search</b> in
+    <font color="red"><b>layer i</b></font> is then:
+    (see the frequencies and cost in the figures above)
+<p>
+</p><ul>
+<table bgcolor="lightyellow" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>   Avg # right moves = 0 * (0.5) + 1*(0.5)<sup>2</sup> + 2*(0.5)<sup>3</sup> ...     
+
+                     = <font color="red">1</font>       <font color="darkred">           ................... (2) </font>         
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+We can use <font color="red"><b>maple</b></font> to compute this sum:
+</p><p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>    |\^/|     Maple 10 (SUN SPARC SOLARIS)
+._|\|   |/|_. Copyright (c) Maplesoft, a division of Waterloo Maple Inc. 2005
+ \  MAPLE  /  All rights reserved. Maple is a trademark of
+ &lt;____ ____&gt;  Waterloo Maple Inc.
+      |       Type ? for help.
+
+&gt; <font color="red">sum( (k-1)*(1/2)^k, k = 1..infinity);</font>
+
+                                                <font color="red">1</font>
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+</p><hr>
+<hr>
+<hr>
+<hr>
+<p>
+</p><p>
+</p></li><li> <font color="darkmagenta"><b>
+     Final result
+     </b></font>
+<p>
+</p><ul>
+<li> <b>The final expression for the <i>run time</i> of
+    <i>get(k)</i> in a skip list of <i>n</i> entries</b>:
+<p>
+</p><ul>
+<table bgcolor="lightcyan" border="5">
+<tbody><tr> <td>
+
+<font color="blue">
+<b>
+<pre>
+      run time get(k) ~= h + h×( # right traversals in 1 level )              ....... (1)
+<font color="darkgreen">
+                         (h ~= log(n))</font>
+
+                      ~= <font color="darkred">log(n) + log(n)×( <font color="red"># right traversals in 1 level</font> )    ....... (2)</font>
+<font color="darkgreen">
+		         (# right traversal in 1 level = # compare op in 1 level)</font>
+
+                      ~= <font color="darkred">log(n) + log(n)×( <font color="red">1</font> )</font>
+
+		      ~= <font color="red">2×log(n)                     ........ (3)</font>
+</pre>
+</b>
+</font>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+</p></li></ul>
+<p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+</p><hr>
+<hr>
+<p>
+</p></li><li> <font color="darkmagenta"><b>
+     Running time of <i>put(k,v)</i> and <i>remove(k)</i>
+     </b></font>
+<p>
+</p><ul>
+<li> The <font color="blue"><b>put()</b></font> and
+   <font color="blue"><b>remove()</b></font> method
+   will
+   <font color="red"><b>finish in O(1)</b></font>
+   <font color="darkmagenta"><b><i>after</i> they have
+   located the appropriate entry</b></font>
+<p>
+</p></li><li> Therefore:
+<p>
+</p><ul>
+<table bgcolor="#FFEEEE" border="5">
+<tbody><tr> <td>
+
+ <ul>
+ <li> <font color="blue"><b>running time put(k,v)</b></font> =
+      <font color="red"><b>O(log(n))</b></font>
+ </li><li> <font color="blue"><b>running time remove(k)</b></font> =
+      <font color="red"><b>O(log(n))</b></font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </li></ul>
+
+</td> </tr>
+</tbody></table>
+</ul>
+<p>
+
+</p></li></ul>
+
+
+
+<p>
+</p></li></ul>
+<p>
+</p><hr>
+<hr>
+<hr>
+<hr>
+
+</li></ul></body></html>
