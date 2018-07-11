@@ -61,6 +61,7 @@ class TicTacToeBot():
 
                     if val < best[0]:
                         best = (val, move)
+        print(values)
         if len(values) == 0:
             return score, None
         if tour == self._player:
