@@ -133,5 +133,6 @@ class PositionalList(DoublyLinkedBase):
             b.next.prev = a
             a.prev, a.next, b.prev, b.next = b.prev, b.next, a.prev, a.next
 
+if __name__ == '__main__':
 
-a = PositionalList()
+    a = PositionalList()
