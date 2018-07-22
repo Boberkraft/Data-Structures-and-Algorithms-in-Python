@@ -1,3 +1,7 @@
+"""
+Modify our ProbeHashMap to use quadratic probing.
+"""
+
 from HashMapBase import HashMapBase
 
 
@@ -5,19 +9,22 @@ class ProbeHashMap(HashMapBase):
     _AVAIL = object()
 
     def _is_available(self, j):
-        return self._table[j] is None or self._table[j] is ProbeHashMap._AVAIL
+        return self._table[j] is None or self._table[j] is ProbeHashMap.AVAIL
 
     def _find_slot(self, j, key):
         firstAvail = None
+        mult = 1
         while True:
             if self._is_available(j):
                 if firstAvail is None:
                     firstAvail = j
                 if self._table[j] is None:
                     return False, firstAvail
-            elif key == self._table[j]._key:
-                return True, j
-            j = (j + 1) % len(self._table)
+                elif key == self._table[j]._key:
+                    return True, j
+
+                j = (j + mult * mult) % len(self._table)
+                mult += 1
 
     def _bucket_getitem(self, j, key):
         found, s = self._find_slot(j, key)
@@ -31,7 +38,7 @@ class ProbeHashMap(HashMapBase):
             self._table[s] = self._Item(key, value)
             self._n += 1
         else:
-            self._table[s]._value = value
+            self._table[s].value = value
 
     def _bucket_delitem(self, j, key):
         found, s = self._find_slot(j, key)
