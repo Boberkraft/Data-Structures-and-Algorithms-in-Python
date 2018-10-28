@@ -4,8 +4,8 @@
 # max in implementing your solution
 
 def minmax(data):
-    max = 0
-    min = 0
+    max = data[0]
+    min = data[0]
     for num in data:
         if max < num:
             max = num
